@@ -85,3 +85,4 @@ git commit -m 'blabla'                  > commita as mudanças com uma mensagem
 git push                                > sincroniza com a plataforma
 
 
+manipulacao de branchs https://www.digitalocean.com/community/tutorials/how-to-use-git-branches
