@@ -79,6 +79,7 @@ _____________________________________________ GIT ______________________________
 
 git status                              > mostra o que foi feito
 git branch                              > mostra as branchs disponiveis e qual estou no momento
+git checkout -b <name>                  > cria uma nova branch com o nome "name"
 git checkout <nome da branch>           > alteera de branch
 git add .                               > adiciona as mudanças no git
 git commit -m 'blabla'                  > commita as mudanças com uma mensagem
