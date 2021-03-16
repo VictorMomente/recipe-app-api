@@ -85,5 +85,10 @@ git add .                               > adiciona as mudanças no git
 git commit -m 'blabla'                  > commita as mudanças com uma mensagem
 git push                                > sincroniza com a plataforma
 
+merge entre branch:
+ir até a main após o commit na dev e digitar:
+git merge dev
+
+depois só dar o push (https://www.youtube.com/watch?v=S2TUommS3O0&ab_channel=Atlassian)
 
 manipulacao de branchs https://www.digitalocean.com/community/tutorials/how-to-use-git-branches
