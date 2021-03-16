@@ -1,0 +1,87 @@
+note:
+
+_____________________________________________ COMANDO PARA INICIAR O DJANGO_____________________________________________________
+
+> docker-compose run app sh -c "django-admin.py startproject app ."
+
+explicação: "sudo docker-compose run app" é o comando padrão para executar o docker. Se for até o arquivo "docker-compose.yml" verá que tem o "app" definido lá.
+O comando "run app" manda executar.
+
+"sh -c" significa que estou iniciando um shell script e "django-admin.py startproject app ." é o comando para iniciar o django.
+
+Após esse comando uma nova pasta app vai surgir.
+
+
+_____________________________________________ .tavis.yml _____________________________________________________
+
+Esse script ensina o travis o que fazer para testar se o programa não está quebrado.
+
+O travis é linkado com o git, então toda vez que eu der um push o travis vai executar
+
+
+_____________________________________________ COMANDO QUE EXECUTA O PROGRAMA _____________________________________________________
+
+> sudo docker-compose run app sh -c "python manage.py test && flake8"
+
+
+_____________________________________________ CRIANDO O CORE APP _____________________________________________________
+
+-Isso inicia de fato o app central onde tudo estará centralizado.
+O comando é > sudo docker-compose run app sh -c "python manage.py startapp core"
+Isso irá criar uma pasta "core"
+
+Essa pasta já irá criar pro padrão alguns arquivos que vamos usar com certeza, como a main, tests, views etc.
+
+Posso apagar no começo o arquivo tests.py, porque esse arquivo ficará em outra pasta no futuro. E exclui views, não precisa dela.
+
+Eu só preciso criar a pasta tests com um arquivo __init__.py
+
+Quando eu crio o core, eu tenho que ir até o app/settings.py e colocar "core" na lista de INSTALLED_APPS
+
+
+_____________________________________________ TESTES _____________________________________________________
+
+- É necessário, no arquivo de tests.py importar do django o comando "from django.py import TestCase"
+
+E importar o TestCase na classe. Olhar o arquivo tests.py para entender
+
+- O ideal é sempre fazer o teste antes de começar a programar de fato. E ai você tenta escrever um código que só passa no teste.
+Depois que passar, ai você foca em otimizar
+
+- Toda função no arquivo tests.py, tem que inicia-la como o prefixo "test", pois na hora de
+
+
+_____________________________________________ docker-compose build_____________________________________________________
+
+Sempre que eu adicionar uma nova coisa no requirements.txt eu devo "remontar" meu conteiner.
+
+Eu faço isso com o comando no terminal "docker-compose build"
+
+
+_____________________________________________ CRIACAO DO USER NO MODELS.PY_____________________________________________________
+_____________________________________________ MIGRACOES _____________________________________________________
+
+- models.py é basicamente onde vou definir as tabelas do banco de dados e vou colocar funcao para interagir com isso.
+por exemplo, a classe User, contém os atributos que um usuário pode ter.
+Quando eu termino de configurar, eu preciso ir no arquivo app/settings.py e ir lá embaixo e definir "AUTH_USER_MODEL = 'core.User'"
+Com isso eu explico para o app onde está a minha configuração de usuário
+
+- Após isso é preciso executar um comando de migracoes. O comando é:
+  > sudo docker-compose run app sh -c "python manage.py makemigrations core"
+  Esse comando cria uma nova pasta chamada "migrations" e nela tera um arquivo .py e esse arquivo
+  conterá as instruções par ao que o Django crie o modelo no bando de dados real!!
+
+- as migracoes são feitas para configurar o banco de dados, sendo assim, toda vez que eu precisar alterar o model, 
+eu preciso executar o comando de migracao
+
+
+_____________________________________________ GIT _____________________________________________________
+
+git status                              > mostra o que foi feito
+git branch                              > mostra as branchs disponiveis e qual estou no momento
+git checkout <nome da branch>           > alteera de branch
+git add .                               > adiciona as mudanças no git
+git commit -m 'blabla'                  > commita as mudanças com uma mensagem
+git push                                > sincroniza com a plataforma
+
+
