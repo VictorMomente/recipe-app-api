@@ -94,3 +94,11 @@ git merge dev
 depois só dar o push (https://www.youtube.com/watch?v=S2TUommS3O0&ab_channel=Atlassian)
 
 manipulacao de branchs https://www.digitalocean.com/community/tutorials/how-to-use-git-branches
+
+
+_____________________________________________ environment variable _____________________________________________________
+
+
+Se quiser colocar senhas no docker-compose, da para adicionar um arquivo .env na pasta do docker-compose.yml
+e no docker compose chamar as variáveis
+https://docs.docker.com/compose/environment-variables/
