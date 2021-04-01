@@ -1,5 +1,11 @@
 note:
 
+
+_____________________________________________ COMANDO QUE EXECUTA O PROGRAMA _____________________________________________________
+
+> sudo docker-compose run app sh -c "python manage.py test && flake8"
+
+
 _____________________________________________ COMANDO PARA INICIAR O DJANGO_____________________________________________________
 
 > docker-compose run app sh -c "django-admin.py startproject app ."
@@ -18,10 +24,6 @@ Esse script ensina o travis o que fazer para testar se o programa não está que
 
 O travis é linkado com o git, então toda vez que eu der um push o travis vai executar
 
-
-_____________________________________________ COMANDO QUE EXECUTA O PROGRAMA _____________________________________________________
-
-> sudo docker-compose run app sh -c "python manage.py test && flake8"
 
 
 _____________________________________________ CRIANDO O CORE APP _____________________________________________________
