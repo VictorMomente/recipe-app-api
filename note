@@ -1,9 +1,12 @@
 note:
 
-
+_____________________________________________ Executanto puramente o docker _____________________________________________________
+>sudo docker-compose up
+isso executa o programa, o servidor, tudo.
 _____________________________________________ COMANDO QUE EXECUTA O PROGRAMA _____________________________________________________
 
 > sudo docker-compose run app sh -c "python manage.py test && flake8"
+>sudo docker-compose run app sh -c "python manage.py test" (sem flake8)
 
 
 _____________________________________________ COMANDO PARA INICIAR O DJANGO_____________________________________________________
@@ -57,7 +60,7 @@ _____________________________________________ docker-compose build______________
 
 Sempre que eu adicionar uma nova coisa no requirements.txt eu devo "remontar" meu conteiner.
 
-Eu faço isso com o comando no terminal "docker-compose build"
+Eu faço isso com o comando no terminal "sudo docker-compose build"
 
 
 _____________________________________________ CRIACAO DO USER NO MODELS.PY_____________________________________________________
@@ -102,3 +105,32 @@ _____________________________________________ environment variable _____________
 Se quiser colocar senhas no docker-compose, da para adicionar um arquivo .env na pasta do docker-compose.yml
 e no docker compose chamar as variáveis
 https://docs.docker.com/compose/environment-variables/
+
+
+
+_____________________________________________ eProblema na criação do db_____________________________________________________
+
+
+Em dado momento, quando eu executava o app, dava o erro 
+Error on startup "django.db.utils.OperationalError: could not translate host name "db" to address: Name does not resolve"
+
+Eu achei a solução dando o comando "sudo docker-compose down -v", isso remove tudo e começa do 0.
+
+lá no settings.py eu coloquei a porta no DATABASE
+
+DATABASES = {
+    'default': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'HOST': os.environ.get('DB_HOST'),
+        'NAME': os.environ.get('DB_NAME'),
+        'USER': os.environ.get('DB_USER'),
+        'PASSWORD': os.environ.get('DB_PASS'),
+        "PORT":5432,
+    }
+}
+
+Aparentemente essa é a porta do localhost e tem que por
+
+Depois recriei o db com "sudo docker-compose build"
+
+e executei de novo e funcionou.
